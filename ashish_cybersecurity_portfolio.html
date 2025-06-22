@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashish Thatikonda | Cybersecurity Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fira Code', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Matrix Background Animation */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #00ff41;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff41;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #00ff41;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff41;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding-top: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-content {
+  max-width: 600px;
+padding-top: 40px;
+}
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #00ff41;
+            margin: 4remS auto 2rem;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+ margin-left: -20px;   /* Move image to the left */
+  margin-top: 115px;    /* Move image slightly up */
+        }
+         .profile-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          border-radius: 50%;
+         }
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-content {
+    padding-top: 0;
+  }
+}
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #00ff41; }
+            to { box-shadow: 0 0 40px #00ff41, 0 0 60px #00ff41; }
+        }
+
+        .greeting {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .name {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #00ff41;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+            text-shadow: 0 0 20px #00ff41;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            color: #00ff41;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.5s;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 2s;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 2.5s;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: 2px solid #00ff41;
+            background: transparent;
+            color: #00ff41;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px #00ff41;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 0.9rem;
+            border-top: 1px solid #00ff41;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-icon {
+            color: #00ff41;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #00ff41;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #00ff41;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .skill-category h3 {
+            color: #00ff41;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .skill-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #00ff41;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid #00ff41;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .project-title {
+            color: #00ff41;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid #00ff41;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .blog-date {
+            color: #00ff41;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-excerpt {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #00ff41;
+        }
+
+        .contact-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #00ff41;
+        }
+.contact-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  border: 1px solid #00ff41;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 65, 0.05);
+  color: #00ff41;
+}
+
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .name {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .status-bar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+
+        /* Terminal cursor animation */
+        .cursor {
+            display: inline-block;
+            background-color: #00ff41;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+.about-box {
+  border: 1px solid #00ff41;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: rgba(0, 255, 65, 0.05);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">./ashish.sh</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                
+            </ul>
+<div class="status-item">
+            <i class="fas fa-clock status-icon"></i>
+            <span id="current-time">10:22:51 am</span>
+        </div>
+        </div>
+    </nav>
+
+   
+   <!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-container">
+    <div class="profile-image">
+      <img src="ashish.jpg" alt="Ashish Thatikonda">
+    </div>
+    <div class="hero-content">
+      <div class="greeting">Hello, I'm</div>
+      <h1 class="name">Ashish<br>Thatikonda</h1>
+      <p class="title">I'm a <span id="typewriter">Cybersecurity Specialist</span><span class="cursor">|</span></p>
+      <p class="tagline">Securing digital frontiers through advanced threat detection,<br>penetration testing, and innovative security solutions.</p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn"><i class="fas fa-envelope"></i> Contact Me</a>
+        <a href="#projects" class="btn"><i class="fas fa-code"></i> View My Work</a>
+       <a href="resume.pdf" download class="btn">
+  <i class="fas fa-download"></i> Download Resume
+</a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-box">
+    <div class="about-text">
+      <p><strong>Ashish Thatikonda</strong> — A dedicated cybersecurity professional with strong analytical and technical skills, blending academic excellence with hands-on experience in real-world security domains.</p>
+      <br>
+      <p>💼 <strong>Professional Experience:</strong> I worked as an <strong>AIML Intern</strong> at <strong>IIIT Hyderabad</strong> (July 2023 – August 2023), where I built and evaluated predictive models using machine learning algorithms. My work involved implementing CNNs and RNNs to analyze sequential data, contributing to research-driven cybersecurity use cases.</p>
+      <br>
+      <p>🎓 <strong>Education:</strong> I'm pursuing a <strong>B.Tech in Cyber Security</strong> at the Institute of Aeronautical Engineering with a CGPA of 8.18. My academic background is supported by certifications such as the <strong>Google Cybersecurity Certificate</strong>, <strong>PostDev Applied Skills</strong>, and <strong>TCM’s Practical Ethical Hacking</strong>, along with EC-Council credentials.</p>
+    </div>
+  </div>
+</section>
+
+   
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Projects & Experience</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3 class="project-title">DDoS Attack Detection System</h3>
+                <p class="project-tech">Technologies: Python, SQLite3, Flask, Machine Learning</p>
+                <p>Developed a machine learning-based system for detecting DDoS attacks using voting classifier and stacking classifier techniques. Implemented with NSL KDD dataset and created a user-friendly Flask interface for real-time attack detection.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">AIML Research Intern - IIIT Hyderabad</h3>
+                <p class="project-tech">Focus: Predictive Modeling, Deep Learning, Computer Vision</p>
+                <p>Developed predictive models using supervised and unsupervised learning techniques. Implemented deep learning models for image classification and object detection tasks while conducting exploratory data analysis.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">Ethical Keylogging Software</h3>
+                <p class="project-tech">Technologies: Python, Encryption, Security Protocols</p>
+                <p>Created an ethical keylogging application for educational purposes with robust security measures including encryption and access controls. Ensured compliance with privacy regulations and conducted extensive testing.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">Book Corner Portal</h3>
+                <p class="project-tech">Technologies: HTML, CSS, JavaScript, MySQL</p>
+                <p>Designed and developed a comprehensive web portal for book enthusiasts with user profiles, book listings, and review systems. Integrated database management for efficient data storage and retrieval.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-title">Palo Alto Cyber Security Virtual Internship</h3>
+                <p class="project-tech">Focus: Cybersecurity Operations, Threat Analysis</p>
+                <p>Gained hands-on experience in cybersecurity through virtual simulations and projects. Learned organizational protection strategies, data breach prevention, and compliance with industry regulations.</p>
+            </div>
+        </div>
+    </section>
+<!-- Skills Section -->
+<section id="skills" class="section">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <h3><i class="fas fa-code"></i> Programming</h3>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>HTML/CSS</li>
+        <li>ReactJS</li>
+        <li>SQL</li>
+        <li>JavaScript</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <h3><i class="fas fa-shield-alt"></i> Security Tools</h3>
+      <ul class="skill-list">
+        <li>Wireshark</li>
+        <li>Nmap</li>
+        <li>Burp Suite</li>
+        <li>Kali Linux</li>
+        <li>Nessus</li>
+        <li>OWASP ZAP</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <h3><i class="fas fa-chart-bar"></i> Data Analysis</h3>
+      <ul class="skill-list">
+        <li>Pandas</li>
+        <li>NumPy</li>
+        <li>Matplotlib</li>
+        <li>Machine Learning</li>
+        <li>Deep Learning</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <h2 class="section-title">Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-date">June 15, 2025</div>
+                <h3 class="blog-title">Machine Learning in Cybersecurity: The Future of Threat Detection</h3>
+                <p class="blog-excerpt">Exploring how machine learning algorithms are revolutionizing cybersecurity by enabling predictive threat detection and automated response systems...</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">June 10, 2025</div>
+                <h3 class="blog-title">Ethical Hacking: A Comprehensive Guide to Penetration Testing</h3>
+                <p class="blog-excerpt">Deep dive into ethical hacking methodologies, tools, and best practices for conducting effective penetration tests while maintaining ethical standards...</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">June 5, 2025</div>
+                <h3 class="blog-title">Understanding DDoS Attacks: Detection and Prevention Strategies</h3>
+                <p class="blog-excerpt">Analyzing the anatomy of DDoS attacks and implementing robust detection systems using machine learning and traditional security measures...</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">May 28, 2025</div>
+                <h3 class="blog-title">Cloud Security Best Practices for Modern Enterprises</h3>
+                <p class="blog-excerpt">Essential security considerations for cloud deployments, including encryption, access controls, and compliance frameworks...</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">May 20, 2025</div>
+                <h3 class="blog-title">The Evolution of Malware: Trends and Defense Mechanisms</h3>
+                <p class="blog-excerpt">Examining current malware trends, advanced persistent threats, and implementing effective defense strategies using modern security tools...</p>
+            </div>
+            <div class="blog-card">
+                <div class="blog-date">May 15, 2025</div>
+                <h3 class="blog-title">Building Secure Web Applications: A Developer's Guide</h3>
+                <p class="blog-excerpt">Comprehensive guide to secure coding practices, vulnerability assessment, and implementing security by design principles...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <p>Let's connect and discuss cybersecurity opportunities, collaborations, or just have a tech conversation!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <a href="tel:6305491543" class="contact-link">6305491543</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <a href="mailto:ashish.t2123@gmail.com" class="contact-link">ashish.t2123@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github contact-icon"></i>
+                    <a href="https://github.com/AshishT-123" class="contact-link">AshishT-123</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <a href="https://linkedin.com/in/ashish-t-531449248" class="contact-link">ashish-t-531449248</a>
+ 
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <i class="fas fa-lock status-icon"></i>
+            <span>ENCRYPTION: ACTIVE</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-shield-alt status-icon"></i>
+            <span>STATUS: SECURE</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-server status-icon"></i>
+            <span>SYSTEM: OPERATIONAL</span>
+        </div>
+            </div>
+
+    <script>
+        // Matrix Background Animation
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+
+        // Typewriter Effect
+        const typewriterText = ["Cybersecurity Specialist", "Ethical Hacker", "Security Researcher", "Penetration Tester"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
+
+        function typewriter() {
+            const currentText = typewriterText[textIndex];
+            
+            if(isDeleting) {
+                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if(!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typewriter, 2000);
+            } else if(isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % typewriterText.length;
+                setTimeout(typewriter, 500);
+            } else {
+                setTimeout(typewriter, isDeleting ? 50 : 100);
+            }
+        }
+
+        // Start typewriter effect after page load
+        setTimeout(typewriter, 2000);
+
+        // Update time in status bar
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { 
+                hour12: true, 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Add scroll reveal animations
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.project-card, .blog-card, .skill-category');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if(elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initial setup for scroll animations
+        const elementsToAnimate = document.querySelectorAll('.project-card, .blog-card, .skill-category');
+        elementsToAnimate.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Check on page load
+    </script>
+</body>
+</html>
